@@ -45,15 +45,16 @@ export const addNewTemplate = async (req,res) => {
             template_name,
             template_content,
             creation_date,
-            type
+            type,
+            html
         } = req.body;
-        console.log(template_id,template_name,template_content,creation_date,type)
-        if (!template_name || !template_content || !creation_date || !type) {
+        console.log(template_id,template_name,template_content,creation_date,type,html)
+        if (!template_name || !template_content || !creation_date || !type || !html) {
             return res.status(400).json({
                 message : "Please provide all the details"
             })
         }
-        const response = await query(`insert into template (template_id,template_name,template_content,creation_date,type) values ($1,$2,$3,$4,$5)`,[template_id,template_name,template_content,creation_date,type]);
+        const response = await query(`insert into template (template_id,template_name,template_content,creation_date,type,html) values ($1,$2,$3,$4,$5,$6)`,[template_id,template_name,template_content,creation_date,type,html]);
         if (response instanceof Error) {
             console.log(response)
             return res.status(500).json({
@@ -99,14 +100,15 @@ export const updateTemplate = async (req,res,next) => {
             template_name,
             template_content,
             creation_date,
-            type
+            type,
+            html
         } = req.body;
-        if (!template_name || !template_content || !creation_date || !type) {
+        if (!template_name || !template_content || !creation_date || !type || !html) {
             return res.status(400).json({
                 message : "Please provide all the details"
             })
         }
-        const response = await query (`update template set template_name=$1,template_content=$2,creation_date=$3,type=$4 where template_id=$5`,[template_name,template_content,creation_date,type,template_id]);
+        const response = await query(`update template set template_name=$1,template_content=$2,creation_date=$3,type=$4,html=$5 where template_id=$6`,[template_name,template_content,creation_date,type,html,template_id]);
         if (response instanceof Error) {
             return res.status(500).json({
                 message : "Failed to update template"
@@ -118,9 +120,10 @@ export const updateTemplate = async (req,res,next) => {
             })
         }
         return res.status(200).json({
-            message : "Template updated successfully"
+            message : "Updated template successfully"
         })
-    } catch (error) {
+    }
+    catch(error) {
         console.error(error)
     }
 }
