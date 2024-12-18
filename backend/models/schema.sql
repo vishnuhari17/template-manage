@@ -1,10 +1,11 @@
 
 
 create table template(
-  template_id int primary key,
-  template_name varchar(100),
-  template_content text,
-  creation_date date,
-  type varchar(50),
-  created_by varchar(100)
+  template_id VARCHAR(100) PRIMARY KEY,
+  template_name VARCHAR(100),
+  template_content VARCHAR(10000),
+  creation_date DATE,
+  type VARCHAR(50),
+  created_by VARCHAR(100),
+  html VARCHAR(10000)
 )

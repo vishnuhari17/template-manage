@@ -28,7 +28,7 @@ export default function TemplateCard({ template }) {
     <div className="bg-white rounded-lg shadow-sm p-4 relative">
       <div className="aspect-w-16 aspect-h-9 mb-4">
         <div className="bg-gray-100 rounded-lg p-4 overflow-hidden h-96">
-          <div dangerouslySetInnerHTML={{ __html: template.template_content }} />
+          <div dangerouslySetInnerHTML={{ __html: template.html }} />
         </div>
       </div>
       <div className="flex justify-between items-start">

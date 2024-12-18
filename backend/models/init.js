@@ -10,7 +10,8 @@ const create_table_template = async () => {
             template_content VARCHAR(10000),
             creation_date DATE,
             type VARCHAR(50),
-            created_by VARCHAR(100)
+            created_by VARCHAR(100),
+            html VARCHAR(10000)
             );`
         );
         console.log("Table template created");
